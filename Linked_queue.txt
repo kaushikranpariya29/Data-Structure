@@ -1,0 +1,108 @@
+#include<iostream>
+using namespace std;
+class list
+{
+	public:
+	int data;
+	list *next;	
+	
+}*front,*rear,*head,*temp,*prev;
+int main(int argc,const char*argv[])
+{
+	head=NULL;
+	int ch; 
+	while(ch!=5)
+	{
+		cout<<"\n-------------------      Linked Queue      ---------------------";
+		cout<<"\n\n1. Create linked queue.\n2. linked enqueue.\n3. Display linked queue.\n4. linked dequeue.\n5. Exit\n\n";
+		cout<<"Enter choice : ";
+		cin>>ch;
+		cout<<"\n\n";
+		switch(ch)
+		{
+			case 1:	if(head == NULL)
+				{
+					list *rear = new list;
+					cout<<"Enter data of new list : ";
+					cin>>rear->data;
+					rear->next = NULL;
+					front = rear;
+					head = rear;
+
+					cout<<"\nLinked Queue Created Successfully.\n\n\n";
+
+				}
+				else
+				{
+					cout<<"\nLinked Queue Is Already Created!!!\n\n";
+					break;
+				}	
+				break;	
+	
+			case 2: if(head == NULL)
+				{
+					cout<<"\nLinked Queue Is Not Created!!!\nPress 1 To Create Linked Queue...\n\n";
+					break;
+				}
+				temp = head;
+				while(temp->next!=NULL)
+				{	
+					temp = temp->next;
+				}
+				rear = new list;
+				cout<<"\nEnter Element Which You Want To Enqueue In Linked Queue : ";
+				cin>>rear->data;	
+				temp->next = rear;
+
+				cout<<"\nLinked Enqueue Operation Performed Successfully\n";
+				cout<<"\nPress 3 To Check Updated Linked Queue...\n\n\n";
+
+				break;
+	
+			case 3: 
+				if(head == NULL)
+				{
+					cout<<"\nLinked Queue Is Empty!!!\nPress 2 To Insert Data In Linked Queue...\n\n";
+					break;
+				}
+				temp = head;
+				cout<<"\n\nLinked Queue : ";
+				while(temp!=NULL)
+    				{
+				       cout<<temp->data;
+				       if(temp->next!=NULL)
+				       {
+				       	      cout<<" ==> ";
+				       }
+				       temp=temp->next;
+    				}
+				cout<<"\n\n\n";
+				break;
+
+			case 4: if(head == NULL)
+				{
+					cout<<"\nLinked Queue Is Empty!!!\nPress 2 To Insert Data In Linked Queue...\n\n";
+					break;
+				}
+				front = head;
+				temp = front;
+				head = front -> next;
+				if(temp == head)
+				{
+					head = NULL;
+				}
+				else
+				{
+					delete temp;
+				}
+				cout<<"\nLinked Dequeue Operation Performed Successfully\n";
+				cout<<"\nPress 3 To See Updated Linked Queue...\n\n\n";
+
+			case 5: break;
+
+			default:cout<<"\nEnter Valide Choice!!!\n\n";
+				break;
+		}
+	}	
+		return 0;	
+}

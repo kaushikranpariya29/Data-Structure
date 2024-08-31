@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+class node
+{
+	public:
+	node *next;
+	int data;
+	node(int d,node *n=NULL)
+	{
+		data=d;
+		next=n;
+	}
+};
+class stack
+{
+	node *top,*head,*temp;
+	public:
+	stack()
+	{
+		top=NULL;
+	}
+	void push()
+	{
+		int x;
+		cout<<"Enter Element:";
+		cin>>x;
+		if(top==NULL)
+			head=top=new node(x);
+		else
+		{
+			top->next=new node(x);
+			top=top->next;
+		}
+	}
+	void pop()
+	{
+		temp=head;
+		while(temp->next->next!=NULL)
+			temp=temp->next;
+		temp->next=NULL;
+	}
+	void display()
+	{
+		temp=head;
+		while(temp!=NULL)
+		{
+			cout<<temp->data<<endl;
+			temp=temp->next;
+		}
+	}
+};
+int main()
+{
+	int no;
+	char c;
+	stack s;
+	do
+	{
+		cout<<"1.Insert node (Push)\n2.Remove node (Pop)\n3.Display\nEnter ypur choice:";
+		cin>>no;
+		if(no==1)
+			s.push();
+		else if(no==2)
+			s.pop();
+		else if(no==3)
+			s.display();
+		else
+			cout<<"Invalid choice\n";
+
+		cout<<"Do You Continue(y/n)?";
+		cin>>c;
+	}while(c=='y' || c=='Y');
+}
